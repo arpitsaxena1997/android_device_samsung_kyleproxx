@@ -282,7 +282,7 @@ on boot
     chown radio radio /dev/bcm_gps
 
 # SEC_PRODUCT_FEATURE_COMMON_USE_MULTISIM
-    setprop ro.multisim.simslotcount 1
+    setprop ro.multisim.simslotcount 2
     
 # For multi csc
     chown radio radio /proc/LinuStoreIII/efs_info 
@@ -425,8 +425,8 @@ on charger
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
 
 on fs
-    mount_all /fstab.hawaii_ss_kylepro
-    swapon_all fstab.hawaii_ss_kylepro
+    mount_all /fstab.hawaii_ss_kyleprods
+    swapon_all fstab.hawaii_ss_kyleprods
 
     # Don't require sim
     setprop keyguard.no_require_sim 1
