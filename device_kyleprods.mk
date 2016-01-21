@@ -1,21 +1,21 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-$(call inherit-product-if-exists, vendor/samsung/kylepro/kylepro-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/kyleproxx/kyleproxx-common-vendor.mk)
 
 # Use high-density artwork where available
 #PRODUCT_LOCALES += hdpi
 #PRODUCT_AAPT_CONFIG := normal
 #PRODUCT_AAPT_PREF_CONFIG := hdpi
 
-DEVICE_PACKAGE_OVERLAYS += device/samsung/kylepro/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/kyleprods/overlay
 
 # Init files
 PRODUCT_COPY_FILES += \
-    device/samsung/kylepro/ramdisk/fstab.hawaii_ss_kylepro:root/fstab.hawaii_ss_kylepro \
-    device/samsung/kylepro/ramdisk/init.hawaii_ss_kylepro.rc:root/init.hawaii_ss_kylepro.rc \
-    device/samsung/kylepro/ramdisk/init.bcm2166x.usb.rc:root/init.bcm2166x.usb.rc \
-    device/samsung/kylepro/ramdisk/init.log.rc:root/init.log.rc \
-    device/samsung/kylepro/ramdisk/ueventd.hawaii_ss_kylepro.rc:root/ueventd.hawaii_ss_kylepro.rc
+    device/samsung/kyleprods/ramdisk/fstab.hawaii_ss_kyleprods:root/fstab.hawaii_ss_kyleprods \
+    device/samsung/kyleprods/ramdisk/init.hawaii_ss_kyleprods.rc:root/init.hawaii_ss_kyleprods.rc \
+    device/samsung/kyleprods/ramdisk/init.bcm2166x.usb.rc:root/init.bcm2166x.usb.rc \
+    device/samsung/kyleprods/ramdisk/init.log.rc:root/init.log.rc \
+    device/samsung/kyleprods/ramdisk/ueventd.hawaii_ss_kyleprods.rc:root/ueventd.hawaii_ss_kyleprods.rc
     
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
@@ -100,7 +100,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     mobiledata.interfaces=rmnet0 \
     ro.telephony.ril_class=SamsungBCMRIL \
-    persist.radio.multisim.config=none \
+    persist.radio.multisim.config=dsds \
     cm.updater.uri=http://ota.sandpox.org \
     ro.telephony.call_ring.multiple=0 \
     camera2.portability.force_api=1 \
@@ -137,6 +137,6 @@ $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-PRODUCT_NAME := full_kylepro
-PRODUCT_DEVICE := kylepro
-PRODUCT_MODEL := GT-S7580
+PRODUCT_NAME := full_kyleprods
+PRODUCT_DEVICE := kyleprods
+PRODUCT_MODEL := GT-S7582
