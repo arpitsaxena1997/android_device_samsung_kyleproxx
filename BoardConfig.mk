@@ -1,7 +1,5 @@
-USE_CAMERA_STUB := true
-
 # Inherit from the proprietary version
--include vendor/samsung/kylepro/BoardConfigVendor.mk
+-include vendor/samsung/kyleproxx/BoardConfigVendor.mk
 
 # Platform
 TARGET_ARCH                                 := arm
@@ -21,7 +19,7 @@ TARGET_GLOBAL_CFLAGS                        += -mtune=cortex-a9 -mfpu=neon -mflo
 TARGET_GLOBAL_CPPFLAGS                      += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE                    := kylepro,S7580,GT-S7580,hawaii,kylexx
+TARGET_OTA_ASSERT_DEVICE                    := kyleprods,S7582,GT-S7582,hawaii,kylexx
 
 # Kernel
 BOARD_MKBOOTIMG_ARGS                        := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
@@ -43,7 +41,7 @@ TARGET_POWERHAL_VARIANT                     := cm
 # PARTITION SIZE
 BOARD_BOOTIMAGE_PARTITION_SIZE              := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE          := 9191424
-BOARD_SYSTEMIMAGE_PARTITION_SIZE            := 1210769408
+BOARD_SYSTEMIMAGE_PARTITION_SIZE            := 1200283648
 BOARD_USERDATAIMAGE_PARTITION_SIZE          := 2373976064
 BOARD_CACHEIMAGE_PARTITION_SIZE             := 209715200
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE           := ext4
@@ -52,8 +50,8 @@ BOARD_FLASH_BLOCK_SIZE                      := 262144
 # Bluetooth
 BOARD_HAVE_BLUETOOTH                        := true
 BOARD_HAVE_BLUETOOTH_BCM                    := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/kylepro/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF                 := device/samsung/kylepro/bluetooth/libbt_vndcfg_s7580.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/kyleprods/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF                 := device/samsung/kylepro/bluetooth/libbt_vndcfg_s7582.txt
 
 # Connectivity - Wi-Fi
 BOARD_HAVE_SAMSUNG_WIFI                     := true
@@ -125,10 +123,10 @@ BACKLIGHT_PATH                              := "/sys/class/backlight/panel/brigh
 BOARD_HAL_STATIC_LIBRARIES                  := libhealthd-kylepro.hawaii
 
 # RIL
-BOARD_RIL_CLASS                             := ../../../device/samsung/kylepro/ril/
+BOARD_RIL_CLASS                             := ../../../device/samsung/kyleprods/ril/
 
 # Recovery
-TARGET_RECOVERY_FSTAB                       := device/samsung/kylepro/ramdisk/fstab.hawaii_ss_kylepro
+TARGET_RECOVERY_FSTAB                       := device/samsung/kyleprods/ramdisk/fstab.hawaii_ss_kylepro
 TARGET_USE_CUSTOM_LUN_FILE_PATH             := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 BOARD_HAS_NO_SELECT_BUTTON                  := true
 BOARD_HAS_LARGE_FILESYSTEM                  := true
@@ -143,7 +141,7 @@ BOARD_SUPPRESS_EMMC_WIPE                    := true
 TARGET_RECOVERY_DENSITY                     := hdpi
 
 # TWRP
-#TARGET_RECOVERY_FSTAB                       := device/samsung/kylepro/ramdisk/twrp.fstab.hawaii_ss_kylepro
+#TARGET_RECOVERY_FSTAB                       := device/samsung/kyleprods/ramdisk/twrp.fstab.hawaii_ss_kyleprods
 DEVICE_RESOLUTION                           := 480x800
 TW_MAX_BRIGHTNESS                           := 255
 TW_CUSTOM_BATTERY_PATH                      := /sys/class/power_supply/battery
@@ -170,14 +168,14 @@ BOARD_VOLD_MAX_PARTITIONS                   := 19
 BOARD_MTP_DEVICE                            := /dev/mtp_usb
 
 # CMHW
-BOARD_HARDWARE_CLASS                        := hardware/samsung/cmhw/ device/samsung/kylepro/cmhw/
+BOARD_HARDWARE_CLASS                        := hardware/samsung/cmhw/ device/samsung/kyleprods/cmhw/
 
 # GPS
-TARGET_SPECIFIC_HEADER_PATH                 := device/samsung/kylepro/include
+TARGET_SPECIFIC_HEADER_PATH                 := device/samsung/kyleprods/include
 
 # Compat
 TARGET_USES_LOGD                            := false
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
-    device/samsung/kylepro/sepolicy
+    device/samsung/kyleprods/sepolicy
