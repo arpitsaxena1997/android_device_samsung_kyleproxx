@@ -29,7 +29,7 @@ BOARD_KERNEL_PAGESIZE                       := 4096
 BOARD_KERNEL_OFFSET                         := 0x00008000
 BOARD_KERNEL_TAGS_OFFSET                    := 0x00000100
 BOARD_RAMDISK_OFFSET                        := 0x01000000
-TARGET_KERNEL_CONFIG                        := bcm21664_hawaii_ss_kylepro_rev00_cyanogenmod_defconfig
+TARGET_KERNEL_CONFIG                        := bcm21664_hawaii_ss_kyleprods_rev00_cyanogenmod_defconfig
 TARGET_KERNEL_SOURCE                        := kernel/samsung/kyleproxx
 TARGET_KERNEL_CUSTOM_TOOLCHAIN              := arm-eabi-4.6
 
