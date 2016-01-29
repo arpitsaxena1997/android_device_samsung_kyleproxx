@@ -126,7 +126,7 @@ BOARD_HAL_STATIC_LIBRARIES                  := libhealthd-kylepro.hawaii
 BOARD_RIL_CLASS                             := ../../../device/samsung/kyleprods/ril/
 
 # Recovery
-TARGET_RECOVERY_FSTAB                       := device/samsung/kyleprods/ramdisk/fstab.hawaii_ss_kylepro
+TARGET_RECOVERY_FSTAB                       := device/samsung/kyleprods/ramdisk/fstab.hawaii_ss_kyleprods
 TARGET_USE_CUSTOM_LUN_FILE_PATH             := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 BOARD_HAS_NO_SELECT_BUTTON                  := true
 BOARD_HAS_LARGE_FILESYSTEM                  := true
