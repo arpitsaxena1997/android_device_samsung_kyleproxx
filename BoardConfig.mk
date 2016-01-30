@@ -1,7 +1,7 @@
 USE_CAMERA_STUB := true
 
 # Inherit from the proprietary version
--include vendor/samsung/kylepro/BoardConfigVendor.mk
+-include vendor/samsung/kyleproxx/BoardConfigVendor.mk
 
 # Platform
 TARGET_ARCH                                 := arm
