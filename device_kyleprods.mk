@@ -27,8 +27,8 @@ PRODUCT_PACKAGES += \
     charger_res_images
     
 #Snap camera
-PRODUCT_PACKAGES += \ 
-    Snap        
+PRODUCT_PACKAGES += \
+Snap      
 
 # Insecure ADBD
 ADDITIONAL_DEFAULT_PROPERTIES += \
