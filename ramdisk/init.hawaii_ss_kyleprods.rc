@@ -9,15 +9,8 @@ on init
     symlink /sdcard /mnt/sdcard
 
     symlink /sdcard /storage/sdcard0
-
-    mkdir /storage/sdcard1 0775 system system
-    export SECONDARY_STORAGE /storage/sdcard1
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
-
-# For backwards compatibility
-    symlink /storage/sdcard1 /external_sd
-    symlink /storage/sdcard1 /mnt/external_sd
+#Stop ril-daemon
+    stop ril-daemon
 
 # To store widevine keybox
     symlink /data/app /factory
