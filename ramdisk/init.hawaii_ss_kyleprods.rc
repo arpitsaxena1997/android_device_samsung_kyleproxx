@@ -9,8 +9,11 @@ on init
     symlink /sdcard /mnt/sdcard
 
     symlink /sdcard /storage/sdcard0
-#Stop ril-daemon
-    stop ril-daemon
+    
+    export SECONDARY_STORAGE /storage/sdcard1
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /storage/sdcard1 0700 root root
+
 
 # To store widevine keybox
     symlink /data/app /factory
@@ -499,7 +502,11 @@ on post-fs
     restorecon_recursive /efs
     chown radio system /efs
     chmod 0771 /efs
-
+#Fuse ext-sdcard
+fusewrapped external sdcard daemon running as media_rw (1023)
+	service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+		class late_start
+		disabled
 
 # Create filesystem if necessary
     service setup_fs /system/bin/setup_fs \
