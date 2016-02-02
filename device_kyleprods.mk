@@ -60,7 +60,6 @@ PRODUCT_PACKAGES += \
 
 # GPS/RIL
 PRODUCT_PACKAGES += \
-    libstlport \
     libglgps-compat
 
 # KSM
