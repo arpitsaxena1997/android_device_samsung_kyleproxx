@@ -1,4 +1,5 @@
-# Copyright (C) 2008 The Android Open Source Project
+# Copyright (C) 2013 The Android Open Source Project
+# Copyright (C) 2013 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,16 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH:= $(call my-dir)
+LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := glgps-compat.cpp
-LOCAL_MODULE := libglgps-compat
-LOCAL_MODULE_TAGS := optional
-LOCAL_SHARED_LIBRARIES := \
-	libgui \
-	libutils
-LOCAL_C_INCLUDES += \
-	frameworks/native/include/
-include $(BUILD_SHARED_LIBRARY)
-
+LOCAL_SRC_FILES := healthd-hawaii.cpp
+LOCAL_MODULE := libhealthd.hawaii
+LOCAL_C_INCLUDES := system/core/healthd
+include $(BUILD_STATIC_LIBRARY)
