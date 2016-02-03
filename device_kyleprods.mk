@@ -29,8 +29,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     charger_res_images
     
-PRODUCT_PACKAGES += \
-    Snap    
 
 # Insecure ADBD
 ADDITIONAL_DEFAULT_PROPERTIES += \
@@ -64,7 +62,9 @@ PRODUCT_PACKAGES += \
 
 # GPS/RIL
 PRODUCT_PACKAGES += \
+    libstlport \
     libglgps-compat
+    
 
 # KSM
 PRODUCT_PROPERTY_OVERRIDES += \
