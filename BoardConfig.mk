@@ -127,7 +127,7 @@ BOARD_HAL_STATIC_LIBRARIES                  := libhealthd.hawaii
 
 # RIL
 BOARD_RIL_CLASS                             := ../../../device/samsung/kyleprods/ril/
-COMMON_GLOBAL_CFLAGS
+#COMMON_GLOBAL_CFLAGS
 
 # Recovery
 TARGET_RECOVERY_FSTAB                       := device/samsung/kyleprods/ramdisk/fstab.hawaii_ss_kyleprods
