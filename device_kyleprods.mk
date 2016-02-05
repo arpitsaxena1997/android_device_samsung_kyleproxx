@@ -12,6 +12,7 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/kyleprods/overlay
 # Init files
 PRODUCT_COPY_FILES += \
     device/samsung/kyleprods/ramdisk/fstab.hawaii_ss_kyleprods:root/fstab.hawaii_ss_kyleprods \
+    device/samsung/kylepro/rootdir/init.rc:root/init.rc \
     device/samsung/kyleprods/ramdisk/init.hawaii_ss_kyleprods.rc:root/init.hawaii_ss_kyleprods.rc \
     device/samsung/kyleprods/ramdisk/init.bcm2166x.usb.rc:root/init.bcm2166x.usb.rc \
     device/samsung/kyleprods/ramdisk/init.log.rc:root/init.log.rc \
@@ -109,7 +110,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     mobiledata.interfaces=rmnet0 \
     ro.telephony.ril_class=SamsungBCMRIL \
-    persist.radio.multisim.config=none \
+    persist.radio.multisim.config=dsds \
     cm.updater.uri=http://ota.sandpox.org \
     ro.telephony.call_ring.multiple=0 \
     camera2.portability.force_api=1 \
