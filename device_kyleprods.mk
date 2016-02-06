@@ -115,6 +115,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mobiledata.interfaces=rmnet0 \
     ro.telephony.ril_class=SamsungBCMRIL \
     persist.radio.multisim.config=dsds \
+    ro.multisim.simslotcount=2 \
     cm.updater.uri=http://ota.sandpox.org \
     ro.telephony.call_ring.multiple=0 \
     camera2.portability.force_api=1 \
