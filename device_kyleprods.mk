@@ -4,7 +4,7 @@ $(call inherit-product-if-exists, vendor/samsung/kyleproxx/kyleproxx-common-vend
 
 # Use high-density artwork where available
 PRODUCT_LOCALES += hdpi
-PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 DEVICE_PACKAGE_OVERLAYS += device/samsung/kyleprods/overlay
@@ -65,7 +65,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libstlport \
     libglgps-compat
-    
+
+# IPv6 tethering
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes    
 
 # KSM
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -15,8 +15,8 @@ ARCH_ARM_HAVE_VFP                           := true
 ARCH_ARM_HAVE_TLS_REGISTER                  := true
 ARCH_ARM_HAVE_NEON                          := true
 TARGET_BOOTLOADER_BOARD_NAME                := hawaii
-TARGET_GLOBAL_CFLAGS                        += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS                      += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CFLAGS                        += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp -O3 -funsafe-math-optimizations
+TARGET_GLOBAL_CPPFLAGS                      += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp -O3 -funsafe-math-optimizations
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE                    := kyleprods,S7582,GT-S7582,hawaii,kylexx
@@ -57,6 +57,8 @@ BOARD_WPA_SUPPLICANT_DRIVER                 := NL80211
 WPA_SUPPLICANT_VERSION                      := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB            := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE_REV                       := bcm4330_b1
+BOARD_HOSTAPD_DRIVER                        := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB                   := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_PARAM                   := "/sys/module/dhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA                     := "/system/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP                      := "/system/etc/wifi/bcmdhd_apsta.bin"
