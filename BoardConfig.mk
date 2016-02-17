@@ -19,7 +19,7 @@ TARGET_GLOBAL_CFLAGS                        += -mtune=cortex-a9 -mfpu=neon -mflo
 TARGET_GLOBAL_CPPFLAGS                      += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp -O3 -funsafe-math-optimizations
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE                    := kyleprods,S7582,GT-S7582,hawaii,kylexx
+TARGET_OTA_ASSERT_DEVICE                    := kyleprods,S7582,GT-S7582,hawaii
 
 # Kernel
 BOARD_MKBOOTIMG_ARGS                        := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
@@ -27,17 +27,21 @@ BOARD_KERNEL_BASE                           := 0x82000000
 BOARD_KERNEL_PAGESIZE                       := 4096
 BOARD_KERNEL_OFFSET                         := 0x00008000
 BOARD_RAMDISK_OFFSET                        := 0x01000000
-TARGET_KERNEL_CONFIG                        := bcm21664_hawaii_ss_kyleprods_rev00_cyanogenmod_defconfig
+BOARD_KERNEL_TAGS_OFFSET                    := 0x00000100
+ifeq ($(BUILD_TWRP),true)
+    TARGET_KERNEL_CONFIG                    := bcm21664_hawaii_ss_kyleproxx_rev00_recovery_defconfig
+else
+    TARGET_KERNEL_CONFIG                    := bcm21664_hawaii_ss_kyleprods_rev00_cyanogenmod_defconfig
+endif
 TARGET_KERNEL_SOURCE                        := kernel/samsung/kyleproxx
 TARGET_KERNEL_CUSTOM_TOOLCHAIN              := arm-eabi-4.6
 
-
-# PARTITION SIZE
+# Partition size
 BOARD_BOOTIMAGE_PARTITION_SIZE              := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE          := 9191424
 BOARD_SYSTEMIMAGE_PARTITION_SIZE            := 1200283648
 BOARD_SYSTEMIMAGE_JOURNAL_SIZE              := 0
-BOARD_USERDATAIMAGE_PARTITION_SIZE          := 2373976064
+BOARD_USERDATAIMAGE_PARTITION_SIZE          := 2382364672
 BOARD_CACHEIMAGE_PARTITION_SIZE             := 209715200
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE           := ext4
 BOARD_FLASH_BLOCK_SIZE                      := 262144
@@ -46,17 +50,16 @@ BOARD_FLASH_BLOCK_SIZE                      := 262144
 BOARD_HAVE_BLUETOOTH                        := true
 BOARD_HAVE_BLUETOOTH_BCM                    := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/kyleprods/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF                 := device/samsung/kyleprods/bluetooth/libbt_vndcfg_s7582.txt
+BOARD_BLUEDROID_VENDOR_CONF                 := device/samsung/kyleprods/bluetooth/libbt_vndcfg.txt
 
 # Connectivity - Wi-Fi
 BOARD_HAVE_SAMSUNG_WIFI                     := true
 BOARD_WLAN_DEVICE                           := bcmdhd
-WPA_BUILD_SUPPLICANT                        := true
 BOARD_WLAN_DEVICE_REV                       := bcm4330_b1
+WPA_BUILD_SUPPLICANT                        := true
 BOARD_WPA_SUPPLICANT_DRIVER                 := NL80211
 WPA_SUPPLICANT_VERSION                      := VER_0_8_X
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB            := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE_REV                       := bcm4330_b1
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB            := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_HOSTAPD_DRIVER                        := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB                   := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_PARAM                   := "/sys/module/dhd/parameters/firmware_path"
@@ -86,7 +89,7 @@ BOARD_USE_MHEAP_SCREENSHOT                  := true
 BOARD_EGL_WORKAROUND_BUG_10194508           := true
 TARGET_USES_ION                             := true
 HWUI_COMPILE_FOR_PERF                       := true
-COMMON_GLOBAL_CFLAGS                        += -DNEEDS_VECTORIMPL_SYMBOLS -DHAWAII_HWC -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL -DREFBASE_JB_MR1_COMPAT_SYMBOLS
+COMMON_GLOBAL_CFLAGS                        += -DNEEDS_VECTORIMPL_SYMBOLS -DHAWAII_HWC -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK       := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS       := true
 
@@ -106,34 +109,29 @@ BOARD_USE_BGRA_8888                         := true
 # Audio
 BOARD_USES_ALSA_AUDIO                       := true
 
-# Enable dex-preoptimization to speed up the first boot sequence
-# of an SDK AVD. Note that this operation only works on Linux for now
-ifeq ($(HOST_OS),linux)
-    WITH_DEXPREOPT                          := true
-endif
-
 # BootAnimation
 TARGET_BOOTANIMATION_PRELOAD                := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE          := true
 
 # Charger
-BOARD_BATTERY_DEVICE_NAME                   := battery
-BOARD_CHARGER_ENABLE_SUSPEND                := true
-BOARD_CHARGER_SHOW_PERCENTAGE               := true
 BOARD_CHARGING_MODE_BOOTING_LPM             := /sys/class/power_supply/battery/batt_lp_charging
-CHARGING_ENABLED_PATH                       := /sys/class/power_supply/battery/batt_lp_charging
-BACKLIGHT_PATH                              := /sys/class/backlight/panel/brightness
+BOARD_CHARGER_ENABLE_SUSPEND                := true
 
-# healthd
+# libhealthd
 BOARD_HAL_STATIC_LIBRARIES                  := libhealthd.hawaii
 
 # RIL
 BOARD_RIL_CLASS                             := ../../../device/samsung/kyleprods/ril/
-COMMON_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
+COMMON_GLOBAL_CFLAGS                        += -DDISABLE_ASHMEM_TRACKING
 
 # Recovery
-TARGET_RECOVERY_FSTAB                       := device/samsung/kyleprods/ramdisk/fstab.hawaii_ss_kyleprods
-TARGET_USE_CUSTOM_LUN_FILE_PATH             := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
+# Compile with BUILD_TWRP=true when build TWRP recovery
+ifeq ($(BUILD_TWRP),true)
+    TARGET_RECOVERY_FSTAB                   := device/samsung/kyleprods/rootdir/twrp.fstab.hawaii_ss_kyleprods
+else
+    TARGET_RECOVERY_FSTAB                   := device/samsung/kyleprods/rootdir/fstab.hawaii_ss_kyleprods
+endif
+TARGET_USE_CUSTOM_LUN_FILE_PATH             := /sys/class/android_usb/android0/f_mass_storage/lun/file
 BOARD_HAS_NO_SELECT_BUTTON                  := true
 BOARD_HAS_LARGE_FILESYSTEM                  := true
 TARGET_USERIMAGES_USE_EXT4                  := true
@@ -146,7 +144,6 @@ BOARD_SUPPRESS_EMMC_WIPE                    := true
 TARGET_RECOVERY_DENSITY                     := hdpi
 
 # TWRP
-#TARGET_RECOVERY_FSTAB                       := device/samsung/kyleprods/ramdisk/twrp.fstab.hawaii_ss_kyleprods
 DEVICE_RESOLUTION                           := 480x800
 TW_MAX_BRIGHTNESS                           := 255
 TW_CUSTOM_BATTERY_PATH                      := /sys/class/power_supply/battery
@@ -155,11 +152,12 @@ RECOVERY_SDCARD_ON_DATA                     := true
 TW_NO_REBOOT_BOOTLOADER                     := true
 RECOVERY_GRAPHICS_USE_LINELENGTH            := true
 TW_INTERNAL_STORAGE_PATH                    := /data/media
-TW_INTERNAL_STORAGE_MOUNT_POINT             := data
+TW_INTERNAL_STORAGE_MOUNT_POINT             := sdcard
 TW_EXTERNAL_STORAGE_PATH                    := /external_sd
 TW_EXTERNAL_STORAGE_MOUNT_POINT             := external_sd
 TW_DEFAULT_EXTERNAL_STORAGE                 := true
 TW_EXCLUDE_SUPERSU                          := true
+TW_NO_CPU_TEMP                              := true
 BOARD_HAS_NO_REAL_SDCARD                    := true
 HAVE_SELINUX                                := true
 
@@ -173,11 +171,10 @@ BOARD_VOLD_MAX_PARTITIONS                   := 19
 BOARD_MTP_DEVICE                            := /dev/mtp_usb
 
 # CMHW
-BOARD_HARDWARE_CLASS                        := hardware/samsung/cmhw/ 
+BOARD_HARDWARE_CLASS                        := hardware/samsung/cmhw/
 
 # GPS
 TARGET_SPECIFIC_HEADER_PATH                 := device/samsung/kyleprods/include
-
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \

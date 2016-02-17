@@ -1,22 +1,29 @@
-# CM13.0 Device tree for GT-S7580
-*UNDERDEVELOPMENT*
+# CM-13.0 Device tree for Samsung GT-S7582 (kyleprods)
 
-### Spec:
-  - Platform: HAWAII (BROADCOM)
+### Specs (Physically inspected):
+  - CPU: Cortex-A9 (Little endian, Dual Core)
+  - Codename: KYLEPRODS
+  - Display Panel: NT35510 (TFT)
+  - Display Resolution: 480x800 (240dpi)
+  - EMMC: 4GB (Usable ~2.2GB)
   - Family: KONA (BROADCOM)
-  - Codename: KYLEPRO
-  - SoC: BCM21664T (1.2Ghz)
-  - CPU: Cortex-A9
-  - GPU: Broadcom VideoCore IV
-  - Screen Resolution: 480x800
-  - RAM: 768M
-  - Sensor: Accelerometer, proximity, compass
-  - Misc: WIFI, Bluetooth, HSPA+, GPS, FM-Radio
-  - Memory: 4GB (Usable 2.2GB)
+  - GPU: Broadcom VideoCore IV (? clock, ~50MB VRAM from RAM)
+  - Misc: WIFI/Tether, Bluetooth, HSPA+, GPS, FM-Radio
+  - PMU: BCM59054
+  - Platform: HAWAII (BROADCOM)
+  - RAM: 768MB (not shared with GPU)
+  - Sensor: Accelerometer (BMC150), Compass (BMC150), Proximity (GP2AP002)
+  - Shipped with Android 4.2.2
+  - SoC: BCM21664T (1.2GHz)
+  - Touch Panel: IST3032 (Max 2 Touch Points?)
+  - WIFI/Bluetooth/FM-Radio: BCM4330
+
+### Notice:
+  - Apply patch *PATCH_CM-13.0.diff* to root directory of CM-13.0 source code before build
 
 ### Other resource:
   - Kernel source: https://github.com/SandPox/android_kernel_samsung_kyleproxx
-  - Vendor blobs: https://github.com/SandPox/android_vendor_samsung_kyleproxx/tree/kylepro
+  - Vendor blobs: https://github.com/SandPox/android_vendor_samsung_kyleproxx
 
 ### More Information:
 ```sh
@@ -35,7 +42,7 @@ CPU variant     : 0x3
 CPU part        : 0xc09                                          
 CPU revision    : 0                                              
                                                                  
-Hardware        : hawaii_ss_kylepro                              
+Hardware        : hawaii_ss_kyleprods                              
 Revision        : 0000                                           
 Serial          : 0000000000000000                               
 ```
@@ -59,12 +66,14 @@ mmcblk0p13: 00000400 00000400 "DTS"
 mmcblk0p14: 00000200 00000400 "FOTA_SIG"
 mmcblk0p15: 0000a000 00000400 "efs"
 mmcblk0p16: 00064000 00000400 "CSC"
-mmcblk0p17: 00241570 00000400 "system"
+mmcblk0p17: 0023c570 00000400 "system"
 mmcblk0p18: 0000f000 00000400 "HIDDEN"
-mmcblk0p19: 0046c000 00000400 "userdata"
+mmcblk0p19: 00470000 00000400 "userdata"
 ```
 
 ### Credits (Sort by alphabetical order):
+  - Ishant Vivek
   - Pawitp
   - The CyanogenMod Team
+  - TheNikiz
   - Zim555
